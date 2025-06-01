@@ -10,6 +10,7 @@ import java.util.UUID;
 public class ValoresReceber {
 
     @Id
+    @GeneratedValue
     private UUID id;
 
     @Column(name = "nome_instituicao", length = 25, nullable = false)
@@ -34,8 +35,6 @@ public class ValoresReceber {
     @ManyToOne
     @JoinColumn(name = "id_prop", nullable = false)
     private Proponente proponente;
-
-    // Getters e Setters
 
     public UUID getId() {
         return id;

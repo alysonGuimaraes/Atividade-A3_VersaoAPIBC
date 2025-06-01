@@ -16,3 +16,11 @@ CREATE TABLE valores_receber (
     id_prop UUID,
     CONSTRAINT fk_proponente FOREIGN KEY (id_prop) REFERENCES proponente(id)
 );
+
+CREATE TABLE log_consulta (
+    id UUID PRIMARY KEY,
+    dta_consulta TIMESTAMP,
+    prop_no_banco BOOLEAN,
+    possui_valores BOOLEAN,
+    cpf_consultado VARCHAR(11)
+);

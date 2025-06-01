@@ -1,6 +1,8 @@
 package com.bca3.valoresareceber.models;
 
 import jakarta.persistence.*;
+
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.UUID;
 
@@ -21,10 +23,7 @@ public class Proponente {
     private String cpf;
 
     @Column(name = "dta_nascimento", nullable = false)
-    @Temporal(TemporalType.DATE)
-    private Date dtaNascimento;
-
-    // Getters e Setters
+    private LocalDate dtaNascimento;
 
     public UUID getId() {
         return id;
@@ -50,11 +49,11 @@ public class Proponente {
         this.cpf = cpf;
     }
 
-    public Date getDtaNascimento() {
+    public LocalDate getDtaNascimento() {
         return dtaNascimento;
     }
 
-    public void setDtaNascimento(Date dtaNascimento) {
+    public void setDtaNascimento(LocalDate dtaNascimento) {
         this.dtaNascimento = dtaNascimento;
     }
 }
