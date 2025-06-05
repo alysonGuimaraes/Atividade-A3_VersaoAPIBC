@@ -25,10 +25,13 @@ src
 ├── main
 │   ├── java
 │   │   └── com.valoresareceber
-│   │       ├── controller
+│   │       ├── controllers
 │   │       ├── dto
-│   │       ├── model
+│   │       ├── models
 │   │       ├── repository
+│   │       ├── exception
+│   │       ├── utils
+│   │       ├── validators
 │   │       └── ValoresAReceberApplication.java
 │   └── resources
 │       ├── application.properties
@@ -37,8 +40,11 @@ src
 
 - **model/**: contém as entidades `Proponente`, `ValoresReceber`, `LogConsulta`.
 - **repository/**: interfaces JPA para acesso ao banco de dados.
-- **dto/**: objetos para retorno de dados (ex: `ValorDTO`, `RespostaConsultaDTO`).
+- **dto/**: objetos para retorno de dados (ex: `ValorDTO`, `ValoresReceberRequestDTO`).
 - **controller/**: classes com os endpoints REST.
+- **exception/**: classes para retorno não generico em caso de erro.
+- **utils/**: classes utilitárias para realizar validações de campos.
+- **validators/**: classes para validações de valores.
 
 ---
 

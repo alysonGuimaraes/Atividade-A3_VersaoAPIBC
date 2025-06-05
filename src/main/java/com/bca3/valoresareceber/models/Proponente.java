@@ -1,5 +1,6 @@
 package com.bca3.valoresareceber.models;
 
+import com.bca3.valoresareceber.validators.ValidCpf;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
@@ -19,6 +20,7 @@ public class Proponente {
     @Column(length = 50, nullable = false)
     private String nome;
 
+    @ValidCpf
     @Column(length = 11, nullable = false, unique = true)
     private String cpf;
 

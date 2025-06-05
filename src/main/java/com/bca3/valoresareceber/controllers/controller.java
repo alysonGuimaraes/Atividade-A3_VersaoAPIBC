@@ -12,15 +12,18 @@ import com.bca3.valoresareceber.repository.LogConsultaRepository;
 import com.bca3.valoresareceber.repository.ProponenteRepository;
 import com.bca3.valoresareceber.repository.ValoresReceberRepository;
 import com.bca3.valoresareceber.models.Proponente;
+import com.bca3.valoresareceber.utils.CpfUtils;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 
 @RestController
 @RequestMapping("/valores-a-receber")
+@Validated
 public class controller {
 
     @Autowired
@@ -34,6 +37,14 @@ public class controller {
 
     @GetMapping("/valores")
     public ResponseEntity<?> consultarValores(@RequestParam String cpf, @RequestParam LocalDate dta_nasc){
+        // Validações do campo CPF
+        if (!CpfUtils.isValid(cpf)) {
+            Map<String, Object> response = new HashMap<>();
+            response.put("Erro", "Campo inválido");
+            response.put("Mensagem", "CPF do proponente inválido, verifique e tente novamente");
+            return ResponseEntity.badRequest().body(response);
+        }
+
         Optional<Proponente> proponenteOpt = proponenteRepository.findByCpf(cpf);
 //        Optional<Proponente> proponenteOpt = proponenteRepository.findByCpfAndDtaNascimento(cpf, dta_nasc);
 
@@ -86,6 +97,13 @@ public class controller {
 
     @PostMapping("/valores")
     public ResponseEntity<?> adicionarVal(@RequestBody ValoresReceberRequestDTO dto) {
+        if (!CpfUtils.isValid(dto.cpf)) {
+            Map<String, Object> response = new HashMap<>();
+            response.put("Erro", "Campo inválido");
+            response.put("Mensagem", "CPF do proponente inválido, verifique e tente novamente");
+            return ResponseEntity.badRequest().body(response);
+        }
+
         Optional<Proponente> proponenteOpt = proponenteRepository.findByCpf(dto.cpf);
 
         if (proponenteOpt.isEmpty()) {
